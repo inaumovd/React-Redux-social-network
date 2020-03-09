@@ -1,0 +1,10 @@
+
+.avatarWrapper {
+    width: 100px;
+    height: 100px;
+}
+
+.avatarWrapper img {
+    width: 100%;
+    height: auto;
+}
