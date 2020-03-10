@@ -43,61 +43,11 @@ let store = {
     },
 
     dispatch(action) {
-        // this._state.profilePage = profileReducer(this._state.profilePage, action);
-        //         // this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
-        //         //
-        //         // this._callSubscriber(this._state);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
 
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText
-            };
-            this._state.profilePage.postsData.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === 'SEND-MESSAGE') {
-            let newMessage = {
-                id: 5,
-                message: this._state.messagesPage.newMessageText
-            };
-            this._state.messagesPage.messagesData.push(newMessage);
-            this._state.messagesPage.newMessageText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-            this._state.messagesPage.newMessageText = action.newText;
-            this._callSubscriber(this._state);
-        }
+        this._callSubscriber(this._state);
     }
-};
-
-export const addPostActionCreator = () => {
-  return {
-      type: 'ADD-POST'
-  };
-};
-
-export const onPostChangeActionCreator = (text) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: text
-    };
-};
-
-export const sendMessageActionCreator = () => {
-  return {
-    type: 'SEND-MESSAGE'
-  };
-};
-
-export const onMessageTextChangeActionCreator = (text) => {
-    return {
-        type: 'UPDATE-MESSAGE-TEXT',
-        newText: text
-    };
 };
 
 export default store;
