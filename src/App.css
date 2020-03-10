@@ -7,9 +7,6 @@
     grid-template-areas:
     "header header"
     "nav content";
-
-    max-width: 1440px;
-    margin: 0 auto;
 }
 
 .app-wrapper-content {

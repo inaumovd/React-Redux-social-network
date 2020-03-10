@@ -1,3 +1,6 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+
 let store = {
     _state: {
         messagesPage: {
@@ -40,6 +43,11 @@ let store = {
     },
 
     dispatch(action) {
+        // this._state.profilePage = profileReducer(this._state.profilePage, action);
+        //         // this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
+        //         //
+        //         // this._callSubscriber(this._state);
+
         if (action.type === 'ADD-POST') {
             let newPost = {
                 id: 5,
@@ -48,12 +56,10 @@ let store = {
             this._state.profilePage.postsData.push(newPost);
             this._state.profilePage.newPostText = '';
             this._callSubscriber(this._state);
-        }
-        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
-        }
-        else if (action.type === 'SEND-MESSAGE') {
+        } else if (action.type === 'SEND-MESSAGE') {
             let newMessage = {
                 id: 5,
                 message: this._state.messagesPage.newMessageText
@@ -61,19 +67,35 @@ let store = {
             this._state.messagesPage.messagesData.push(newMessage);
             this._state.messagesPage.newMessageText = '';
             this._callSubscriber(this._state);
-        }
-        else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
             this._state.messagesPage.newMessageText = action.newText;
             this._callSubscriber(this._state);
         }
     }
 };
 
-export const addPostActionCreator = () => ({ type: 'ADD-POST'});
+export const addPostActionCreator = () => {
+  return {
+      type: 'ADD-POST'
+  };
+};
 
 export const onPostChangeActionCreator = (text) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
+        newText: text
+    };
+};
+
+export const sendMessageActionCreator = () => {
+  return {
+    type: 'SEND-MESSAGE'
+  };
+};
+
+export const onMessageTextChangeActionCreator = (text) => {
+    return {
+        type: 'UPDATE-MESSAGE-TEXT',
         newText: text
     };
 };

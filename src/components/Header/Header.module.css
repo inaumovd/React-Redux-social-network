@@ -1,6 +1,67 @@
 .header {
-    border:1px solid;
     grid-area: header;
+
+    background-color: #333;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+
+    max-width: 1030px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.logo {
+    margin-right: 10px;
+}
+
+.logoWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+.slogan {
+    display: block;
+
+    color: #ffffff;
+}
+
+.navigation {
+    flex-grow: 1;
+    max-width: 550px;
+}
+
+.navList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 0;
+    margin: 0;
+    height: 100%;
+
+    list-style: none;
+}
+
+.navItem {
+    margin-right: 10px;
+}
+
+.link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .header img {
