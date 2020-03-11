@@ -6,12 +6,12 @@ import Friends from "./Friends/Friends";
 
 const Sidebar = (props) => {
 
-    const friendsList = props.state.map(friend => <Friends name={friend.name}/>);
+    // const friendsList = props.state.map(friend => <Friends name={friend.name}/>);
 
     return (
         <div>
             <Navigation/>
-            {friendsList}
+            {/*{friendsList}*/}
         </div>
     );
 }
