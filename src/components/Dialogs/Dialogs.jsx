@@ -5,18 +5,19 @@ import Message from "./Message/Message";
 import {onMessageTextChangeActionCreator, sendMessageActionCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
-    let dialogsElements = props.state.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messageElements = props.state.messagesData.map(message => <Message message={message.message} id={message.id}/>)
+
+    let dialogsElements = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
+    let messageElements = props.messages.map(message => <Message message={message.message} id={message.id}/>)
 
     let newMessageElement = React.createRef();
 
     let onButtonSendMessage = () => {
-        props.dispatch(sendMessageActionCreator());
+        props.onButtonSendMessage();
     };
 
     let onMessageTextChange = () => {
       let text = newMessageElement.current.value;
-      props.dispatch(onMessageTextChangeActionCreator(text));
+      props.onMessageTextChange(text);
     };
 
     return (
@@ -29,7 +30,7 @@ const Dialogs = (props) => {
         </div>
         <div>
             <textarea onChange={onMessageTextChange}
-                      ref={newMessageElement} name="" id="" cols="30" rows="10" value={props.state.newMessageText}></textarea>
+                      ref={newMessageElement} name="" id="" cols="30" rows="10" value={props.newMessageText}></textarea>
             <button onClick={onButtonSendMessage}>Send message</button>
         </div>
     </div>
