@@ -35,7 +35,7 @@ let store = {
     getState() {
       return this._state;
     },
-    suscribe (observer) {
+    suscribe(observer) {
         this._callSubscriber = observer;
     },
     _callSubscriber () {

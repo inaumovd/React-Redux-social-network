@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Dialogs.module.css";
 import {onMessageTextChangeActionCreator, sendMessageActionCreator} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
-import Posts from "../Profile/Posts/Posts";
+import Dialogs from "./Dialogs";
 
 let mapStateToProps = (state) => {
     return {
@@ -25,6 +25,6 @@ let mapDispatchToProps = (dispatch) => {
 
 
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
