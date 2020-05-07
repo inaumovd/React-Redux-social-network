@@ -6,8 +6,8 @@ import {onMessageTextChangeActionCreator, sendMessageActionCreator} from "../../
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messageElements = props.messages.map(message => <Message message={message.message} id={message.id}/>)
+    let dialogsElements = props.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>);
+    let messageElements = props.messages.map(message => <Message key={message.id} message={message.message} id={message.id}/>)
 
     let newMessageElement = React.createRef();
 
@@ -28,10 +28,12 @@ const Dialogs = (props) => {
         <div className={style.messages}>
             {messageElements}
         </div>
-        <div>
-            <textarea onChange={onMessageTextChange}
+        <div className={style.dialogsTextContainer}>
+            <textarea className={style.textarea}
+                      onChange={onMessageTextChange}
                       ref={newMessageElement} name="" id="" cols="30" rows="10" value={props.newMessageText}></textarea>
-            <button onClick={onButtonSendMessage}>Send message</button>
+            <button className={style.sendButton}
+                    onClick={onButtonSendMessage}>Send message</button>
         </div>
     </div>
   );

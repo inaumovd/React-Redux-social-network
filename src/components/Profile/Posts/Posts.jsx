@@ -3,7 +3,7 @@ import style from './Posts.module.css';
 import Post from "./Post/Post";
 
 const Posts = (props) => {
-    let postsElements = props.posts.map(post => <Post message={post.message} id={post.id} />);
+    let postsElements = props.posts.map(post => <Post key={post.id} message={post.message} id={post.id} />);
 
     let newPostElement = React.createRef();
 
@@ -17,13 +17,14 @@ const Posts = (props) => {
     };
 
     return (
-        <div>
-            my posts
-            <div>
-                <textarea onChange={onPostChange}
+        <div className={style.postsContainer}>
+            <div className={style.textAreaWrapper}>
+                <textarea className={style.textArea}
+                          onChange={onPostChange}
                           ref={newPostElement} cols="30" rows="10"
-                          value={props.newPostText}/>
-                <button onClick={onAddPost}>Add post</button>
+                          value={props.newPostText} placeholder={'Write what you wish'}/>
+                <button className={style.publishButton}
+                        onClick={onAddPost}>Add post</button>
             </div>
             <div className={style.posts}>
                 posts

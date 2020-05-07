@@ -1,10 +1,32 @@
 
 .avatarWrapper {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid white;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: -180px;
+    position: relative;
 }
 
 .avatarWrapper img {
     width: 100%;
     height: auto;
+}
+
+.profileBackground {
+    margin: 0 auto;
+    height: 400px;
+    overflow: hidden;
+}
+
+.profileBackground img{
+    width: 100%;
+    height: auto;
+}
+
+.profileContainer {
+    width: 80%;
+    margin: 0 auto;
 }
