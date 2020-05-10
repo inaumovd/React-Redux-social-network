@@ -1,0 +1,47 @@
+.usersContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 50px;
+    height: 100vh;
+}
+
+.userContainer {
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    margin-right: 50px;
+}
+
+.userHeader {
+    height: 50%;
+    position: relative;
+    margin-bottom: 45px;
+}
+
+.userBg img{
+    width: 100%;
+    height: auto;
+}
+
+.userPhoto {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 10px solid white;
+    overflow: hidden;
+    position: absolute;
+    bottom: -50px;
+    left: 20px;
+}
+
+.userPhoto img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

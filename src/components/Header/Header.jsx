@@ -7,7 +7,7 @@ const Header = () => {
         <header className={style.header}>
             <div className={style.headerContainer}>
                 <a href='#' className={style.logoWrapper}>
-                    <img className={style.logo} src="https://i.dlpng.com/static/png/3900808-burning-tree-danger-fire-flame-forest-icon-burning-tree-png-512_512_preview.webp" alt=""/>
+                    <img className={style.logo} src="https://cdn4.iconfinder.com/data/icons/aami-flat-disaster/64/disasters-09-512.png" alt=""/>
                     <span className={style.slogan}>Friends Finder</span>
                 </a>
                 <nav className={style.navigation}>
@@ -17,6 +17,9 @@ const Header = () => {
                         </li>
                         <li className={style.navItem}>
                             <NavLink className={style.link} to="/dialogs">Message</NavLink>
+                        </li>
+                        <li className={style.navItem}>
+                            <NavLink className={style.link} to="/users">Users</NavLink>
                         </li>
                         <li className={style.navItem}>
                             <a className={style.link} href="">News</a>
