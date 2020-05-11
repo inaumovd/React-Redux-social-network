@@ -21,15 +21,15 @@ const Header = () => {
                         <li className={style.navItem}>
                             <NavLink className={style.link} to="/users">Users</NavLink>
                         </li>
-                        <li className={style.navItem}>
-                            <a className={style.link} href="">News</a>
-                        </li>
-                        <li className={style.navItem}>
-                            <a className={style.link} href="">Music</a>
-                        </li>
-                        <li className={style.navItem}>
-                            <a className={style.link} href="">Settings</a>
-                        </li>
+                        {/*<li className={style.navItem}>*/}
+                        {/*    <a className={style.link} href="">News</a>*/}
+                        {/*</li>*/}
+                        {/*<li className={style.navItem}>*/}
+                        {/*    <a className={style.link} href="">Music</a>*/}
+                        {/*</li>*/}
+                        {/*<li className={style.navItem}>*/}
+                        {/*    <a className={style.link} href="">Settings</a>*/}
+                        {/*</li>*/}
                     </ul>
                 </nav>
             </div>
