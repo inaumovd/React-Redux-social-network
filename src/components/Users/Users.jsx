@@ -1,15 +1,14 @@
 import React from "react";
 import style from "./Users.module.css";
+import * as axios from 'axios';
+import userPhoto from '../../assets/images/user.png'
+
 
 const Users = (props) => {
     if (props.users.length === 0) {
-        props.setUsers([
-            {id: 1, followed: false, userBgUrl: 'http://mythemestore.com/friend-finder/images/covers/5.jpg', userPhotoUrl: 'http://mythemestore.com/friend-finder/images/users/user-4.jpg', fullName: 'Dima', status: 'Im boss', location: {city: 'Irkutsk', country: 'Russia'}},
-            {id: 2, followed: true, userBgUrl: 'http://mythemestore.com/friend-finder/images/covers/5.jpg', userPhotoUrl: 'http://mythemestore.com/friend-finder/images/users/user-4.jpg', fullName: 'Dima', status: 'Im boss', location: {city: 'Irkutsk', country: 'Russia'}},
-            {id: 3, followed: false, userBgUrl: 'http://mythemestore.com/friend-finder/images/covers/5.jpg', userPhotoUrl: 'http://mythemestore.com/friend-finder/images/users/user-4.jpg', fullName: 'Dima', status: 'Im boss', location: {city: 'Irkutsk', country: 'Russia'}},
-            {id: 4, followed: true, userBgUrl: 'http://mythemestore.com/friend-finder/images/covers/5.jpg', userPhotoUrl: 'http://mythemestore.com/friend-finder/images/users/user-4.jpg', fullName: 'Dima', status: 'Im boss', location: {city: 'Irkutsk', country: 'Russia'}},
-            {id: 5, followed: false, userBgUrl: 'http://mythemestore.com/friend-finder/images/covers/5.jpg', userPhotoUrl: 'http://mythemestore.com/friend-finder/images/users/user-4.jpg', fullName: 'Dima', status: 'Im boss', location: {city: 'Irkutsk', country: 'Russia'}},
-        ]);
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            props.setUsers(response.data.items);
+        });
     }
     return (
         <div className={style.usersContainer}>
@@ -18,17 +17,17 @@ const Users = (props) => {
                     <div className={style.userContainer} key={user.id}>
                         <div className={style.userHeader}>
                             <div className={style.userBg}>
-                                <img src={user.userBgUrl} alt=""/>
+                                <img src="http://mythemestore.com/friend-finder/images/covers/6.jpg" alt=""/>
                             </div>
                             <div className={style.userPhoto}>
-                                <img src={user.userPhotoUrl} alt=""/>
+                                <img src={user.photos.small != null ? user.photos.small : userPhoto} alt=""/>
                             </div>
                         </div>
 
                         <div>
                             <div>
                                 <span>{user.fullName}</span>
-                                <span>{user.location.city}</span>
+                                {/*<span>{user.location.city}</span>*/}
                                 <span>{user.status}</span>
                             </div>
 
