@@ -46,3 +46,7 @@
     object-fit: cover;
     transform: scale(1.5);
 }
+
+.selectedPage {
+    font-weight: bold;
+}
