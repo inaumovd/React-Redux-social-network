@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Users.module.css";
 import userPhoto from '../../assets/images/user.png';
+import {NavLink} from "react-router-dom";
 
 let Users = (props) => {
 
@@ -17,8 +18,7 @@ let Users = (props) => {
 
             {pages.map(page => {
                 return <span onClick={() => {
-                    props.onPageChanged(page)
-                }}
+                    props.onPageChanged(page)}}
                              className={props.currentPage === page && style.selectedPage}>{page}</span>
             })}
 
@@ -28,7 +28,9 @@ let Users = (props) => {
                 <div className={style.userContainer} key={user.id}>
                     <div className={style.userHeader}>
                         <div className={style.userBg}>
-                            <img src="http://mythemestore.com/friend-finder/images/covers/6.jpg" alt=""/>
+                            <NavLink to={'/profile/' + user.id}>
+                                <img src="http://mythemestore.com/friend-finder/images/covers/6.jpg" alt=""/>
+                            </NavLink>
                         </div>
                         <div className={style.userPhoto}>
                             <img src={user.photos.small != null ? user.photos.small : userPhoto} alt=""/>

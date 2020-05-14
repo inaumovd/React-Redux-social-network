@@ -1,10 +1,10 @@
-
 let initialState = {
     postsData: [
         {id: 1, message: 'Hi, how are you?'},
         {id: 2, message: 'It\'s my first post!'},
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -29,6 +29,13 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: action.newText,
             };
 
+        case 'SET_USER_PROFILE':
+
+            return {
+                ...state,
+                profile: action.profile,
+            };
+
         default:
             return state;
 
@@ -45,6 +52,13 @@ export const onPostChangeActionCreator = (text) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newText: text
+    };
+};
+
+export const setUserProfile = (profile) => {
+    return {
+        type: 'SET_USER_PROFILE',
+        profile
     };
 };
 
