@@ -9,7 +9,9 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+        })
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCount(response.data.totalCount);
@@ -20,7 +22,9 @@ class UsersContainer extends React.Component {
     onPageChanged = (page) => {
         this.props.setCurrentPage(page);
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+        })
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setIsFetching(false);
@@ -51,28 +55,5 @@ let mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching
     }
 };
-
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userID) => {
-//             dispatch(followAC(userID));
-//         },
-//         unfollow: (userID) => {
-//             dispatch(unfollowAC(userID));
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users));
-//         },
-//         setCurrentPage: (page) => {
-//             dispatch(setCurrentPageAC(page));
-//         },
-//         setTotalCount: (totalCount) => {
-//             dispatch(setTotalCountAC(totalCount));
-//         },
-//         setIsFetching: (isFetching) => {
-//             dispatch(setIsFetching(isFetching));
-//         },
-//     }
-// };
 
 export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalCount, setIsFetching})(UsersContainer);
