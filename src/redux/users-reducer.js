@@ -63,7 +63,10 @@ const usersReducer = (state = initialState, action) => {
         case SET_IS_FOLLOWING_PROGRESS: {
             return {...state,
                     followingInProgress: action.isFetching
+                        //если фетчинг то кидаем в массив
                         ? [...state.followingInProgress, action.userId]
+
+                        //если не фетчикг то убираем из массива
                         : state.followingInProgress.filter(id => id != action.userId)
             };
         }

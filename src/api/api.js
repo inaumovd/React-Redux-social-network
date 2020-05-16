@@ -16,3 +16,17 @@ export const getUsers = (currentPage, pageSize) => {
             return response.data;
         });
 };
+
+export const deleteUser = (userId) => {
+    return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+        .then(response => {
+            return response.data;
+        });
+};
+
+export const postUser = (userId) => {
+    return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+        .then(response => {
+            return response.data;
+        });
+};
