@@ -2,8 +2,6 @@ import React from "react";
 import style from "./Users.module.css";
 import userPhoto from '../../assets/images/user.png';
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {deleteUser, postUser} from "../../api/api";
 
 let Users = (props) => {
 
@@ -50,28 +48,13 @@ let Users = (props) => {
                         <div>
                             {user.followed
                                 //если этот эл есть в массиве
-                                ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                                    props.isFollowingProgress(true, user.id);
-                                    deleteUser(user.id)
-                                        .then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.unfollow(user.id);
-                                                props.isFollowingProgress(false, user.id);
-                                            }
-                                        });
+                                ? <button disabled={props.followingInProgress.some(id => id === user.id)}
+                                          onClick={() => {props.deleteUser(user.id);
                                 }}>Unfollow</button>
 
 
-                                : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                                    props.isFollowingProgress(true, user.id);
-                                    postUser(user.id)
-                                        .then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.follow(user.id);
-                                                props.isFollowingProgress(false, user.id );
-                                            }
-
-                                        });
+                                : <button disabled={props.followingInProgress.some(id => id === user.id)}
+                                          onClick={() => {props.postUser(user.id)
                                 }}>Follow</button>}
                         </div>
                     </div>

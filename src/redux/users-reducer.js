@@ -1,3 +1,5 @@
+import {usersApi} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -71,7 +73,6 @@ const usersReducer = (state = initialState, action) => {
             };
         }
 
-
         default:
             return state;
     }
@@ -126,5 +127,46 @@ export const isFollowingProgress = (isFetching, userId) => {
         userId
     };
 };
+
+//thunk
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setIsFetching(true));
+
+        usersApi.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setUsers(data.items));
+                dispatch(setTotalCount(data.totalCount));
+                dispatch(setIsFetching(false));
+            });
+    };
+};
+
+export const deleteUser = (userId) => {
+    return (dispatch) => {
+        dispatch(isFollowingProgress(true, userId));
+        usersApi.deleteUser(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollow(userId));
+                    dispatch(isFollowingProgress(false, userId));
+                }
+            });
+    };
+};
+
+export const postUser = (userId) => {
+  return (dispatch) => {
+      dispatch(isFollowingProgress(true, userId));
+      usersApi.postUser(userId)
+          .then(data => {
+              if (data.resultCode === 0) {
+                  dispatch(follow(userId));
+                  dispatch(isFollowingProgress(false, userId));
+              }
+          });
+  };
+};
+
 
 export default usersReducer;

@@ -10,23 +10,27 @@ const instance = axios.create({
     }
 });
 
-export const getUsers = (currentPage, pageSize) => {
-    return instance.get(`${baseUrl}/users?page=${currentPage}&count=${pageSize}`)
-        .then(response => {
-            return response.data;
-        });
+export const usersApi = {
+    getUsers (currentPage, pageSize) {
+        return instance.get(`${baseUrl}/users?page=${currentPage}&count=${pageSize}`)
+            .then(response => {
+                return response.data;
+            });
+    },
+
+    deleteUser (userId) {
+        return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+            .then(response => {
+                return response.data;
+            });
+    },
+
+    postUser (userId) {
+        return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+            .then(response => {
+                return response.data;
+            });
+    }
 };
 
-export const deleteUser = (userId) => {
-    return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
-        .then(response => {
-            return response.data;
-        });
-};
 
-export const postUser = (userId) => {
-    return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
-        .then(response => {
-            return response.data;
-        });
-};

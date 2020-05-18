@@ -3,38 +3,20 @@ import {connect} from "react-redux";
 import {
     follow,
     setCurrentPage,
-    setUsers,
     unfollow,
-    setTotalCount,
-    setIsFetching,
-    isFollowingProgress
+    isFollowingProgress, getUsers, deleteUser, postUser
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import {getUsers} from "../../api/api";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.setIsFetching(true);
-
-        getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.setTotalCount(data.totalCount);
-                this.props.setIsFetching(false);
-            });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (page) => {
-        this.props.setCurrentPage(page);
-        this.props.setIsFetching(true);
-
-        getUsers(page, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.setIsFetching(false);
-            });
+        this.props.getUsers(page, this.props.pageSize);
     };
 
     render() {
@@ -48,7 +30,9 @@ class UsersContainer extends React.Component {
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
                    followingInProgress={this.props.followingInProgress}
-                   isFollowingProgress={this.props.isFollowingProgress} />
+                   isFollowingProgress={this.props.isFollowingProgress}
+                   deleteUser={this.props.deleteUser}
+                   postUser={this.props.postUser} />
         </>
     }
 }
@@ -64,4 +48,5 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalCount, setIsFetching, isFollowingProgress})(UsersContainer);
+export default connect(mapStateToProps, {follow, unfollow, setCurrentPage,
+    isFollowingProgress, getUsers, deleteUser, postUser})(UsersContainer);
