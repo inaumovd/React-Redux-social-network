@@ -1,3 +1,6 @@
+import {usersApi} from "../api/api";
+import {isFollowingProgress, unfollow} from "./users-reducer";
+
 let initialState = {
     postsData: [
         {id: 1, message: 'Hi, how are you?'},
@@ -59,6 +62,15 @@ export const setUserProfile = (profile) => {
     return {
         type: 'SET_USER_PROFILE',
         profile
+    };
+};
+
+export const getUsersProfile = (userId) => {
+    return (dispatch) => {
+        usersApi.getProfile(userId)
+            .then(data => {
+                dispatch(setUserProfile(data));
+            });
     };
 };
 

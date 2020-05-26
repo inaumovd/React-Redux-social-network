@@ -156,6 +156,7 @@ export const deleteUser = (userId) => {
 };
 
 export const postUser = (userId) => {
+    debugger
   return (dispatch) => {
       dispatch(isFollowingProgress(true, userId));
       usersApi.postUser(userId)
