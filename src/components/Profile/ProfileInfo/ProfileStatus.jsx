@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { setStatus } from "../../../redux/profile-reducer";
 
 const ProfileStatus = (props) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [status, setLocalStatus] = useState(props.status);
+
+  useEffect(() => {
+    setLocalStatus(props.status);
+  }, [props.status]);
 
   const onStatusClick = () => {
     setIsEditMode(true);
@@ -18,7 +22,7 @@ const ProfileStatus = (props) => {
     <div>
       <div>
         {!isEditMode ? (
-          <span onDoubleClick={onStatusClick}>{props.status}</span>
+          <span onDoubleClick={onStatusClick}>{props.status || "---"}</span>
         ) : (
           <input
             autoFocus={true}
