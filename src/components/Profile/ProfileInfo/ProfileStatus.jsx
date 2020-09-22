@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { setStatus } from "../../../redux/profile-reducer";
 
 const ProfileStatus = (props) => {
   const [isEditMode, setIsEditMode] = useState(false);

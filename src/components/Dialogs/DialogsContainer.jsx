@@ -1,13 +1,12 @@
-import React from "react";
-import style from "./Dialogs.module.css";
+import { compose } from "redux";
+import { connect } from "react-redux";
+
+import Dialogs from "./Dialogs";
 import {
   onMessageTextChangeActionCreator,
   sendMessageActionCreator,
 } from "../../redux/dialogs-reducer";
-import { connect } from "react-redux";
-import Dialogs from "./Dialogs";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
 
 let mapStateToProps = (state) => {
   return {

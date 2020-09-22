@@ -1,5 +1,4 @@
 import { usersApi } from "../api/api";
-import { isFollowingProgress, unfollow } from "./users-reducer";
 
 let initialState = {
   postsData: [

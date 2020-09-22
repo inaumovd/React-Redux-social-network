@@ -1,15 +1,15 @@
 import React from "react";
-import Profile from "./Profile";
 import { connect } from "react-redux";
+import { compose } from "redux";
+import { withRouter } from "react-router-dom";
+
+import Profile from "./Profile";
+
 import {
   getUsersProfile,
   getUserStatus,
   updateStatus,
 } from "../../redux/profile-reducer";
-import { withRouter } from "react-router-dom";
-import Redirect from "react-router-dom/es/Redirect";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
 
 const myUserId = 8092;
 

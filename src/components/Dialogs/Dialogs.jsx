@@ -1,8 +1,32 @@
 import React from "react";
 import style from "./Dialogs.module.css";
+import { useForm } from "react-hook-form";
+import Redirect from "react-router-dom/es/Redirect";
+
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import Redirect from "react-router-dom/es/Redirect";
+
+const AddMessageForm = (props) => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <textarea
+        className={style.textarea}
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        value={props.newMessageText}
+        ref={register}
+      ></textarea>
+      <button type="submit" className={style.sendButton}>
+        Send message
+      </button>
+    </form>
+  );
+};
 
 const Dialogs = (props) => {
   let dialogsElements = props.dialogs.map((dialog) => (
@@ -12,17 +36,6 @@ const Dialogs = (props) => {
     <Message key={message.id} message={message.message} id={message.id} />
   ));
 
-  let newMessageElement = React.createRef();
-
-  let onButtonSendMessage = () => {
-    props.onButtonSendMessage();
-  };
-
-  let onMessageTextChange = () => {
-    let text = newMessageElement.current.value;
-    props.onMessageTextChange(text);
-  };
-
   if (!props.isAuth) return <Redirect to={"/login"} />;
 
   return (
@@ -30,19 +43,7 @@ const Dialogs = (props) => {
       <div className={style.dialogsItems}>{dialogsElements}</div>
       <div className={style.messages}>{messageElements}</div>
       <div className={style.dialogsTextContainer}>
-        <textarea
-          className={style.textarea}
-          onChange={onMessageTextChange}
-          ref={newMessageElement}
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-          value={props.newMessageText}
-        ></textarea>
-        <button className={style.sendButton} onClick={onButtonSendMessage}>
-          Send message
-        </button>
+        <AddMessageForm props={props} />
       </div>
     </div>
   );
